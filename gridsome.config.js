@@ -4,10 +4,6 @@
 // Changes here requires a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
-require('dotenv').config({
-  path: '.env'
-})
-
 module.exports = {
   siteName: 'Philosophical Dev',
   siteDescription: 'Philosophical ramblings & resources from a random teenager on the internet.',

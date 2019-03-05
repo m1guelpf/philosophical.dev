@@ -71,7 +71,6 @@ module.exports = function (api) {
         }).includes('#philosophy')
       })
     }).then(articles => {
-      console.log(articles)
       articles.forEach(post => {
         posts.addNode({
           title: post.title,
