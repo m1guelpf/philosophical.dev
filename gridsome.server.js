@@ -4,7 +4,6 @@
 
 // Changes here requires a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
-exit();
 const config = require('./gridsome.config');
 
 const GhostContentAPI = require('@tryghost/content-api')
@@ -72,6 +71,7 @@ module.exports = function (api) {
         }).includes('#philosophy')
       })
     }).then(articles => {
+      console.log(articles)
       articles.forEach(post => {
         posts.addNode({
           title: post.title,
