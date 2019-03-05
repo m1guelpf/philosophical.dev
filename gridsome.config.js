@@ -18,24 +18,4 @@ module.exports = {
     key: process.env.GHOST_KEY,
     version: 'v2'
   },
-
-  plugins: [
-    // {
-    //   // Create posts from markdown files
-    //   use: '@gridsome/source-filesystem',
-    //   options: {
-    //     typeName: 'LocalPost',
-    //     path: 'content/posts/*.md',
-    //     route: '/local/:slug',
-    //     refs: {
-    //       // Creates a GraphQL collection from 'tags' in front-matter and adds a reference.
-    //       tags: {
-    //         typeName: 'Tag',
-    //         route: '/local/tag/:id',
-    //         create: true
-    //       }
-    //     }
-    //   }
-    // }
-  ],
 }
