@@ -16,7 +16,7 @@ module.exports = function (api) {
     store.addMetaData('author', config.author)
   })
 
-  api.loadSource(store => {
+  api.loadSource(async store => {
     const api = new GhostContentAPI(config.ghost);
 
     const posts = store.addContentType({
@@ -64,55 +64,55 @@ module.exports = function (api) {
         return node.fields.posts
       }
     }))
-    api.posts.browse({limit: 'all', include: 'tags,authors'}).then(articles => {
-      return articles.filter(post => {
+    let articles = await api.posts.browse({limit: 'all', include: 'tags,authors'})
+    
+    articles = articles.filter(post => {
         return post.tags.map(tag => {
           return tag.name
         }).includes('#philosophy')
-      })
-    }).then(articles => {
-      articles.forEach(post => {
-        posts.addNode({
-          title: post.title,
-          id: post.id,
-          slug: post.slug,
-          date: post.published_at,
-          content: post.html,
-          excerpt: post.excerpt,
-          fields: {
-            tags: post.tags.filter(tag => {
-              return ! tag.name.startsWith('#')
-            }).map(tag => {
-              return {
-                title: tag.name,
-                id: tag.id,
-                slug: tag.slug,
-                content: tag.description,
-                path: '/tag/' + tag.slug
-              }
-            }),
-            coverImage: post.feature_image,
-            meta: {
-              title: post.meta_title,
-              description: post.meta_description,
-            },
-            inject: {
-              head: post.codeinjection_head,
-              footer: post.codeinjection_foot,
-            },
-            og: {
-              title: post.og_title,
-              description: post.og_description,
-              image: post.og_image,
-            },
-            twitter: {
-              title: post.twitter_title,
-              description: post.twitter_description,
-              image: post.twitter_image,
-            },
-            template: post.custom_template
-          }
-        })
+    })
+
+    articles.forEach(post => {
+      posts.addNode({
+        title: post.title,
+        id: post.id,
+        slug: post.slug,
+        date: post.published_at,
+        content: post.html,
+        excerpt: post.excerpt,
+        fields: {
+          tags: post.tags.filter(tag => {
+            return ! tag.name.startsWith('#')
+          }).map(tag => {
+            return {
+              title: tag.name,
+              id: tag.id,
+              slug: tag.slug,
+              content: tag.description,
+              path: '/tag/' + tag.slug
+            }
+          }),
+          coverImage: post.feature_image,
+          meta: {
+            title: post.meta_title,
+            description: post.meta_description,
+          },
+          inject: {
+            head: post.codeinjection_head,
+            footer: post.codeinjection_foot,
+          },
+          og: {
+            title: post.og_title,
+            description: post.og_description,
+            image: post.og_image,
+          },
+          twitter: {
+            title: post.twitter_title,
+            description: post.twitter_description,
+            image: post.twitter_image,
+          },
+          template: post.custom_template
+        }
       })
 
       api.tags.browse({limit: 'all', include: 'posts,authors'}).then(tags => {
