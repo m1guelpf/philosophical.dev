@@ -4,7 +4,7 @@
 
 // Changes here requires a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
-
+exit();
 const config = require('./gridsome.config');
 
 const GhostContentAPI = require('@tryghost/content-api')
