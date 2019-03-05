@@ -115,7 +115,8 @@ module.exports = function (api) {
         }
       })
 
-      api.tags.browse({limit: 'all', include: 'posts,authors'}).then(tags => {
+      let tags = await api.tags.browse({limit: 'all', include: 'posts,authors'})
+
       tags.forEach(tag => {
         tagStore.addNode({
           title: tag.name,
@@ -151,7 +152,6 @@ module.exports = function (api) {
           }
         })
       })
-    })
     })
   })
 }
