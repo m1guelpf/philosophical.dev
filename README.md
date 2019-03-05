@@ -1,5 +1,7 @@
 # Gridsome Blog Starter
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/m1guelpf/philosophical.dev.svg)](https://greenkeeper.io/)
+
 > A simple, hackable & minimalistic starter for Gridsome that uses Markdown for content.
 
 ## Features
