@@ -69,7 +69,7 @@ module.exports = function (api) {
       return articles.filter(post => {
         return post.tags.map(tag => {
           return tag.name
-        }).includes(process.env.GHOST_TAG)
+        }).includes('#philosophy')
       })
     }).then(articles => {
       articles.forEach(post => {
