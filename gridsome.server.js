@@ -72,7 +72,7 @@ module.exports = function (api) {
         }).includes('#philosophy')
     })
 
-    articles.forEach(post => {
+    articles.forEach(async post => {
       posts.addNode({
         title: post.title,
         id: post.id,
