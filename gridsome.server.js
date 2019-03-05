@@ -72,7 +72,12 @@ module.exports = function (api) {
         }).includes('#philosophy')
     })
 
-    articles.forEach(async post => {
+    let tags = await api.tags.browse({
+      limit: 'all',
+      include: 'posts,authors'
+    })
+
+    articles.forEach(post => {
       posts.addNode({
         title: post.title,
         id: post.id,
@@ -114,8 +119,6 @@ module.exports = function (api) {
           template: post.custom_template
         }
       })
-
-      let tags = await api.tags.browse({limit: 'all', include: 'posts,authors'})
 
       tags.forEach(tag => {
         tagStore.addNode({
